@@ -26,7 +26,9 @@ spec:
           - name: INSTANA_AGENT_HOST
             valueFrom:
               fieldRef:
-                fieldPath: status.hostIP
+                fieldPath: spec.nodeName
+          - name: INSTANA_AGENT_PORT
+            value: "42699"  # Default Instana agent port
         ports:
         - containerPort: 8080
         resources:
