@@ -29,7 +29,9 @@ spec:
           - name: INSTANA_AGENT_HOST
             valueFrom:
               fieldRef:
-                fieldPath: status.hostIP
+                fieldPath: spec.nodeName
+          - name: INSTANA_AGENT_PORT
+            value: "42699"  # Default Instana agent port
           {{- if .Values.payment.gateway }}
           - name: PAYMENT_GATEWAY
             value: {{ .Values.payment.gateway }}
