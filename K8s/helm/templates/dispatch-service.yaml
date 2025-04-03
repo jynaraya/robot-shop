@@ -1,5 +1,3 @@
-# dispatch just listens to a message queue
-# it does not expose any ports
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,10 +5,11 @@ metadata:
   labels:
     service: dispatch
 spec:
-  clusterIP: None
+  type: NodePort  # Change from ClusterIP to NodePort
   ports:
-  - name: headless
-    port: 55555
-    targetPort: 0
+  - name: http
+    port: 55555   # The service port
+    targetPort: 55555  # The container's port
+    nodePort: 30055  # Custom NodePort (Optional, Kubernetes assigns if omitted)
   selector:
     service: dispatch
